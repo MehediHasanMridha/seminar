@@ -59,8 +59,14 @@
                     <figure><img src="{{ asset('hot_images/' . $item->image) }}" alt="Shoes" /></figure>
                     <div class="card-body">
                         <h2 class="card-title">{{ substr($item->title, 0, 25) . '....' }}</h2>
-                        <div class="card-actions justify-end">
-                            <a href='delete_hot_image/{{ $item->id }}' class="btn-danger bg-red-600 btn">Delete</a>
+                        <div class="card-actions justify-between">
+                            @if ($item->status == 'active')
+                                <a href="change_status/{{ $item->id }}" class="btn-warning btn">Deactivate</a>
+                            @else
+                                <a href="change_status/{{ $item->id }}"
+                                    class="btn-accent btn-active btn">Activate</a>
+                            @endif
+                            <a href="delete_hot_image/{{ $item->id }}" class="btn-danger btn bg-red-600">Delete</a>
                         </div>
                     </div>
                 </div>

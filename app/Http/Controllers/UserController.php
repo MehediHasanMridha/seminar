@@ -15,7 +15,7 @@ class UserController extends Controller
     public function home()
     {
         $data = Post::all();
-        $img = HotImage::all();
+        $img = HotImage::where('status', '=', 'active')->get();
         return view('index', compact('data', 'img'));
     }
     public function show($id)
@@ -96,7 +96,7 @@ class UserController extends Controller
     public function admin_dashboard()
     {
         $data = Post::all();
-        $img = HotImage::all();
+        $img = HotImage::where('status', '=', 'active')->get();
         return view('admin_dashboard', compact('data', 'img'));
     }
     public function post_page()
@@ -157,11 +157,23 @@ class UserController extends Controller
         DB::delete('delete from hot_images where id = ?', [$id]);
         return redirect()->back();
     }
+    public function change_status($id)
+    {
+        $data = HotImage::find($id);
+        if ($data->status == 'active') {
+            $data->status = 'deactive';
+        } else {
+            $data->status = 'active';
+        }
+        $data->save();
+        // DB::delete('delete from hot_images where id = ?', [$id]);
+        return redirect()->back();
+    }
 
     public function search(Request $request)
     {
         // echo $request->search;
-        $data=Post::where('title', 'like', '%'.$request->search.'%')->get();
+        $data = Post::where('title', 'like', '%' . $request->search . '%')->get();
         return view('searchResult', compact('data'));
     }
 }

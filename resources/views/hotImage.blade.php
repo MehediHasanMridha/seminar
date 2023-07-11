@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -28,7 +29,8 @@
             </div>
         @endif
         <div class="container mt-5">
-            <h2 class="text-center">Add New Hot Image</h2>
+            <h2 class="text-center">Add New Slide Image</h2>
+            <a href="/" class="w-40 rounded-lg bg-green-700 px-2 text-2xl text-white">Go Home</a>
             <form action="{{ route('hot.image.create') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
@@ -47,12 +49,12 @@
                     @enderror
                 </div>
                 <div class="d-flex justify-content-center mt-4">
-                    <button type="submit" class="btn-primary btn">Submit</button>
+                    <button type="submit" class="btn-primary btn bg-green-600">Submit</button>
                 </div>
             </form>
         </div>
 
-        <h1 class="mb-4 text-center">Hot Image</h1>
+        <h1 class="mb-4 text-center">Slide Image</h1>
         <main class="grid w-full grid-cols-1 place-items-center gap-4 p-3 lg:grid-cols-3">
             @foreach ($hot_images as $item)
                 <div class="card-compact card w-72 bg-base-100 shadow-xl lg:w-80">
